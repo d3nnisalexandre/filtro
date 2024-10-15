@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elit Style - Loja de Roupas</title>
+    <link rel="shortcut icon" href="Captura_de_de_tela_2024-09-18_133809-removebg-preview.png" type="image/x-icon">
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            background-color: #151515;
+        }
+
+        * {
+            box-sizing: border-box;
+            color: white;
+        }
+
+        
+
+        /* Estilo do layout */
+        .layout {
+            display: flex; /* Usar flexbox para alinhar o filtro e a galeria */
+            margin-top: 80px; /* Espaçamento abaixo da navbar */
+            width: 100%; /* Largura total */
+        }
+
+        /* Estilo do formulário de filtros */
+        #filtro {
+            background-color: #1e1e1e;
+            border-radius: 1px;
+            padding: 30px;
+            width: 400px;
+            margin-right: 20px; /* Espaço à direita do filtro */
+            position: sticky; /* Fixo durante o scroll */
+            top: 80px; /* Fica abaixo da navbar */
+            height: calc(100vh - 80px); /* Ajusta a altura */
+            overflow-y: auto; /* Adiciona scroll se necessário */
+        }
+
+        h3 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffd700;
+        }
+
+        select, input[type="number"], input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #151515;
+            border-radius: 1px;
+            background-color: #2e2e2e;
+            color: white;
+        }
+
+        /* Aumentar o campo de tamanho */
+        #tamanho {
+            font-size: 18px; /* Aumenta a fonte do campo */
+            height: 40px; /* Aumenta a altura do campo */
+        }
+
+        button {
+            background-color: #ffd700;
+            color: #151515;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ffcc00;
+        }
+
+        /* Estilos para a galeria de imagens */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Quatro colunas */
+            gap: 10px;
+            flex-grow: 2; /* Permite que a galeria ocupe o restante do espaço */
+            height: calc(100vh - 10px); /* Ajusta a altura para ocupar a área restante */
+        }
+
+        .galeria-item {
+            text-align: center;
+        }
+
+        .square {
+            width: 80%;
+            height: 80%; /* Ajuste conforme necessário */
+            border: 2px solid #151515; /* Borda opcional */
+            border-radius: 5px; /* Arredondar os cantos, opcional */
+            overflow: hidden; /* Esconde parte da imagem que ultrapassa o quadrado */
+            background-color: #333; /* Cor de fundo para os quadrados */
+        }
+
+        .square img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajusta a imagem para cobrir o quadrado */
+        }
+
+        figcaption {
+            margin-top: 0px;
+            color: #ffd700; /* Cor do texto do título */
+            font-size: 14px; /* Tamanho da fonte do título */
+        }
+
+        /* Aumentar o container */
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 40px;
+            width: 90%; /* Ajuste para ocupar 90% da viewport */
+            max-width: 1400px; /* Definir um limite máximo */
+            margin: 0 auto; /* Centralizar o container */
+        }
+    </style>
+</head>
+<body>
+
+    <header> 
+        <nav class="Nav_Bar">
+            <div class="logo">
+                <span>Elit</span>
+                <span class="Dorado">Style</span>
+            </div>
+            <div class="search-pesqui">
+                <input type="text" class="search-input" placeholder="Pesquise...">
+                <button class="search-icon">
+                    <img src="https://cdn.icon-icons.com/icons2/2645/PNG/512/search_icon_159890.png" alt="Ícone de pesquisa">
+                </button>
+                <div class="base-bar"></div>
+                <div class="animation_bar"></div>
+            </div>
+            <div class="menu-icon">
+                <img src="hamburger_menu_icon.png" alt="Menu"> 
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Lançamentos</a></li>
+                <li><a href="#">Marcas</a></li>
+                <li><a href="#">Acessórios</a></li>
+                <li><a href="#">🛒</a></li>
+                <li class="user-profile">
+                    <img src="https://i.pinimg.com/564x/cb/2d/a9/cb2da9b8e06f5e2c25eb7b3fc82340f8.jpg" alt="User Profile">
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="#">Perfil</a></li>
+                            <li><a href="#">Sair</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="layout">
+        <div id="filtro">
+            <h3>Filtros</h3>
+            <label for="marca">Marca:</label>
+            <select id="marca">
+                <option value="todas">todas</option>
+                <option value="marca1">Marca 1</option>
+                <option value="marca2">Marca 2</option>
+            </select>
+            <label for="precoMinimo">Preço Mínimo:</label>
+            <input type="number" id="precoMinimo" value="20">
+            <label for="precoMaximo">Preço Máximo:</label>
+            <input type="number" id="precoMaximo" value="100">
+            <label for="tamanho">Tamanho:</label>
+            <select id="tamanho">
+                <option value="extra-pequeno">Extra Pequeno (PP)</option>
+                <option value="pequeno">Pequeno (P)</option>
+            </select>
+            <button>Aplicar Filtros</button>
+        </div>
+
+        <div class="galeria">
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 1">
+                    <figcaption>Img 1</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 2">
+                    <figcaption>Img 2</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 3">
+                    <figcaption>Img 3</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 4">
+                    <figcaption>Img 4</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 5">
+                    <figcaption>Img 5</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 6">
+                    <figcaption>Img 6</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 7">
+                    <figcaption>Img 7</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 8">
+                    <figcaption>Img 8</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 9">
+                    <figcaption>Img 9</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 10">
+                    <figcaption>Img 10</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 11">
+                    <figcaption>Img 11</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 12">
+                    <figcaption>Img 12</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 13">
+                    <figcaption>Img 13</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 14">
+                    <figcaption>Img 14</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 15">
+                    <figcaption>Img 15</figcaption>
+                </figure>
+            </div>
+            <div class="galeria-item">
+                <figure class="square">
+                    <img src="download.png" alt="Produto 16">
+                    <figcaption>Img 16</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
